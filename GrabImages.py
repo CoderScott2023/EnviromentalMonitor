@@ -21,3 +21,14 @@ def createNDVImap(year, month):
   monthlyImages = getMedianImageOfMonth(year, month)
   ndvi = monthlyImages.normalizedDifference(["B4", "B5"])
   return ndvi
+
+for year in range(2000, 2021):
+  for month in range(1, 13):
+    task = ee.batch.Export.image.toDrive(
+        image=ndvi_map.clip(wasatchFrontAreaBounding),
+        description=f'NDVI_Year_{year}_Month_{month}',
+        scale=30,
+        region=wasatchFrontAreaBounding.getInfo(),
+        maxPixels=1e9
+    )
+    task.start()
