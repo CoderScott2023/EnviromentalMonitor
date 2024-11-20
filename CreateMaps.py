@@ -2,9 +2,12 @@ import os
 import rasterio
 import numpy as np
 import matplotlib.pyplot as plt
+from google.colab import drive
 
-dataDir = ''
-outputDir = ''
+drive.mount('/content/drive')
+
+dataDir = '/content/drive/My Drive/EarthEngineExports'
+outputDir = '/content/drive/My Drive/ThematicMapsForUSEF'
 os.makedirs(output_dir, exist_ok=True)
 
 def classify_ndvi(ndviData):
