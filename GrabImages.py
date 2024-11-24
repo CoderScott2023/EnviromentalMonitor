@@ -1,6 +1,7 @@
 import ee
 
-ee.Initialize()
+ee.Authenticate()
+ee.Initialize(project="project-id") #not going to put my actual project id here for obvious reasons, especially cuz i wanna make this public sometime. Just know that it goes here for stuff like colab
 
 wasatchFrontAreaBounding = ee.Geometry.Polygon([
   [-113, 40], [-113, 42],
