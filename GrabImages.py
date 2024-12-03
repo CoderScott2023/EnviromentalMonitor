@@ -15,7 +15,7 @@ images = ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA') \
 def getMedianImageOfMonth(year, month):
     startDate = f'{year}-{month:02d}-01'
     endDate = f'{year}-{month:02d}-30' if month != 2 else f'{year}-{month:02d}-28'
-    monthlyImages = images.filterDate(startDate, endDate).median()
+    monthlyImages = images.filterDate(startDate, endDate).mean()
     return monthlyImages
 
 def createNDVImap(year, month):
