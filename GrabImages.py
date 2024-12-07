@@ -30,7 +30,7 @@ def createNDVImap(year, month):
     return ndvi
 
 for year in range(2000, 2021):
-    for month in range(1, 13)
+    for month in range(1, 13):
         ndviMap = createNDVImap(year, month)
         
         task = ee.batch.Export.image.toDrive(
