@@ -14,7 +14,7 @@ wasatchFrontAreaBounding = ee.Geometry.Polygon([
   [-111, 42], [-111, 40]
 ])
 
-images = landsat_5.merge(landsat_7).merge(landsat_8) \
+images = landsat_8 \
     .filterDate('2000-01-01', '2020-01-01') \
     .filterBounds(wasatchFrontAreaBounding)
 
