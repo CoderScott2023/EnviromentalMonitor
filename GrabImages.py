@@ -30,7 +30,11 @@ def createNDVImap(year, month):
     return ndvi
 
 for year in range(2000, 2021):
+  if year == 2013 or year == 2014 or year == 2015:
+    continue
     for month in range(1, 13):
+        if year == 2016 and month != 12:
+          continue
         ndviMap = createNDVImap(year, month)
         
         task = ee.batch.Export.image.toDrive(
