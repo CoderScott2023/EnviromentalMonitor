@@ -1,5 +1,9 @@
 import cv2
 import matplotlib.pyplot as plt
+from google.colab import drive
+
+dataDir = '/content/drive/My Drive/NDVI_Maps'
+outputDir = '/content/drive/My Drive/Cropped_Maps'
 
 image_path = "NDVI_Year_2001_Month_12.png"
 image = cv2.imread(image_path)
