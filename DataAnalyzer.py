@@ -12,27 +12,17 @@ os.makedirs(outputDir, exist_ok=True)
 
 def classify_ndvi_from_image(image):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    red_pixels = np.all(image_rgb == [165, 0, 38], axis=-1)
+    yellow_pixels = np.all(image_rgb == [255, 255, 191], axis=-1)
+    green_pixels = np.all(image_rgb == [0, 104, 55], axis=-1)
+    return np.sum(red_pixels), np.sum(yellow_pixels), np.sum(green_pixels)
 
-    red_pixels = np.all(image_rgb == [255, 0, 0], axis=-1)
-    yellow_pixels = np.all(image_rgb == [255, 255, 0], axis=-1)
-    green_pixels = np.all(image_rgb == [0, 128, 0], axis=-1)
-
-    red_count = np.sum(red_pixels)
-    yellow_count = np.sum(yellow_pixels)
-    green_count = np.sum(green_pixels)
-
-    return red_count, yellow_count, green_count
-
-months = []
 red_counts = []
 yellow_counts = []
 green_counts = []
 
 for filename in sorted(os.listdir(dataDir)):
     if filename.endswith('.png'):
-        month = filename.split('_')[-1].replace('.png', '')
-        months.append(month)
-
         filePath = os.path.join(dataDir, filename)
         image = cv2.imread(filePath)
 
@@ -41,18 +31,18 @@ for filename in sorted(os.listdir(dataDir)):
         yellow_counts.append(yellow_count)
         green_counts.append(green_count)
 
-plt.figure(figsize=(12, 6))
-plt.plot(months, red_counts, label='Red (Low NDVI)', color='red', marker='o')
-plt.plot(months, yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o')
-plt.plot(months, green_counts, label='Green (High NDVI)', color='green', marker='o')
-plt.xlabel('Month')
+plt.figure(figsize=(18, 8))
+plt.plot(red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
+plt.plot(yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
+plt.plot(green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
+
+plt.xlabel('Image Index')
 plt.ylabel('Pixel Count')
-plt.title('NDVI Pixel Classification Over Time')
-plt.xticks(rotation=45)
+plt.title('NDVI Pixel Classification Over Images')
 plt.legend()
-plt.grid(True)
+plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
 
-output_plot = os.path.join(outputDir, 'NDVI_Trends.png')
+output_plot = os.path.join(outputDir, 'NDVI_Trends_Simple.png')
 plt.savefig(output_plot, dpi=300)
 plt.show()
