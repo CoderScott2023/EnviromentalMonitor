@@ -17,32 +17,35 @@ def classify_ndvi_from_image(image):
     green_pixels = np.all(image_rgb == [0, 104, 55], axis=-1)
     return np.sum(red_pixels), np.sum(yellow_pixels), np.sum(green_pixels)
 
+start_index = 0
+end_index = 12
+
 red_counts = []
 yellow_counts = []
 green_counts = []
 
-for filename in sorted(os.listdir(dataDir)):
-    if filename.endswith('.png'):
-        filePath = os.path.join(dataDir, filename)
-        image = cv2.imread(filePath)
+filenames = sorted([f for f in os.listdir(dataDir) if f.endswith('.png')])
+for i in range(start_index - 1, end_index):
+    filePath = os.path.join(dataDir, filenames[i])
+    image = cv2.imread(filePath)
 
-        red_count, yellow_count, green_count = classify_ndvi_from_image(image)
-        red_counts.append(red_count)
-        yellow_counts.append(yellow_count)
-        green_counts.append(green_count)
+    red_count, yellow_count, green_count = classify_ndvi_from_image(image)
+    red_counts.append(red_count)
+    yellow_counts.append(yellow_count)
+    green_counts.append(green_count)
 
 plt.figure(figsize=(18, 8))
-plt.plot(red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
-plt.plot(yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
-plt.plot(green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
+plt.plot(range(start_index, end_index + 1), red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
+plt.plot(range(start_index, end_index + 1), yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
+plt.plot(range(start_index, end_index + 1), green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
 
 plt.xlabel('Image Index')
 plt.ylabel('Pixel Count')
-plt.title('NDVI Pixel Classification Over Images')
+plt.title('NDVI Pixel Classification Over Selected Range')
 plt.legend()
 plt.grid(True, linestyle='--', alpha=0.5)
 plt.tight_layout()
 
-output_plot = os.path.join(outputDir, 'NDVI_Trends_Simple.png')
+output_plot = os.path.join(outputDir, f'NDVI_Trends_{start_index}_to_{end_index}.png')
 plt.savefig(output_plot, dpi=300)
 plt.show()
