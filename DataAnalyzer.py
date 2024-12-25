@@ -17,40 +17,45 @@ def classify_ndvi_from_image(image):
     green_pixels = np.all(image_rgb == [0, 104, 55], axis=-1)
     return np.sum(red_pixels), np.sum(yellow_pixels), np.sum(green_pixels)
 
-start_index = 1
-end_index = 12
+def load_images(start, end):
+    red_counts = []
+    yellow_counts = []
+    green_counts = []
+    tick_labels = []
 
-red_counts = []
-yellow_counts = []
-green_counts = []
-tick_labels = []
+    filenames = sorted([f for f in os.listdir(dataDir) if f.endswith('.png')])
+    for i in range(start, end):
+        if i >= len(filenames):
+            break
 
-filenames = sorted([f for f in os.listdir(dataDir) if f.endswith('.png')])
-for i in range(start_index - 1, end_index):
-    filePath = os.path.join(dataDir, filenames[i])
-    image = cv2.imread(filePath)
+        filePath = os.path.join(dataDir, filenames[i])
+        image = cv2.imread(filePath)
 
-    red_count, yellow_count, green_count = classify_ndvi_from_image(image)
-    red_counts.append(red_count)
-    yellow_counts.append(yellow_count)
-    green_counts.append(green_count)
+        red_count, yellow_count, green_count = classify_ndvi_from_image(image)
+        red_counts.append(red_count)
+        yellow_counts.append(yellow_count)
+        green_counts.append(green_count)
 
-    month = i + 1
-    tick_labels.append(f'Month {month}')
+        month = i + 1
+        tick_labels.append(f'Month {month}')
 
-plt.figure(figsize=(18, 8))
-plt.plot(range(start_index, end_index + 1), red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
-plt.plot(range(start_index, end_index + 1), yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
-plt.plot(range(start_index, end_index + 1), green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
+    plt.figure(figsize=(18, 8))
+    plt.plot(range(start + 1, end + 1), red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
+    plt.plot(range(start + 1, end + 1), yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
+    plt.plot(range(start + 1, end + 1), green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
 
-plt.xticks(ticks=range(start_index, end_index + 1), labels=tick_labels, rotation=45)
-plt.xlabel('Image Index')
-plt.ylabel('Pixel Count')
-plt.title('NDVI Pixel Classification Over Selected Range')
-plt.legend()
-plt.grid(True, linestyle='--', alpha=0.5)
-plt.tight_layout()
+    plt.xticks(ticks=range(start + 1, end + 1), labels=tick_labels, rotation=45)
+    plt.xlabel('Image Index')
+    plt.ylabel('Pixel Count')
+    plt.title(f'NDVI Pixel Classification for Images {start + 1} to {end}')
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
 
-output_plot = os.path.join(outputDir, f'NDVI_Trends_{start_index}_to_{end_index}.png')
-plt.savefig(output_plot, dpi=300)
-plt.show()
+    output_plot = os.path.join(outputDir, f'NDVI_Trends_{start + 1}_to_{end}.png')
+    plt.savefig(output_plot, dpi=300)
+    plt.close()
+
+total_images = len([f for f in os.listdir(dataDir) if f.endswith('.png')])
+for x in range(0, total_images, 12):
+    load_images(x, x + 12)
