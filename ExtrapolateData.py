@@ -12,3 +12,8 @@ with open(file_path, "r") as file:
         elif line:
             category, count = line.split(":")
             data.append((current_month, category.strip(), int(count.strip())))
+organized_data = {}
+for month, category, count in data:
+    if month not in organized_data:
+        organized_data[month] = {"Green": 0, "Yellow": 0, "Red": 0}
+    organized_data[month][category] = count
