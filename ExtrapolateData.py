@@ -29,8 +29,6 @@ for month, counts in organized_data.items():
     yellow_counts.append(counts["Yellow"])
     red_counts.append(counts["Red"])
 
-
-months_tensor = tf.constant(months, dtype=tf.int32)
-green_tensor = tf.constant(green_counts, dtype=tf.int32)
-yellow_tensor = tf.constant(yellow_counts, dtype=tf.int32)
-red_tensor = tf.constant(red_counts, dtype=tf.int32)
+green_norm = green_counts / green_counts.max()
+yellow_norm = yellow_counts / yellow_counts.max()
+red_norm = red_counts / red_counts.max()
