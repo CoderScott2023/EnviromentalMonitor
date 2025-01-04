@@ -32,3 +32,6 @@ for month, counts in organized_data.items():
 green_norm = green_counts / green_counts.max()
 yellow_norm = yellow_counts / yellow_counts.max()
 red_norm = red_counts / red_counts.max()
+
+y = green_norm[1:]
+X = np.stack([green_norm[:-1], yellow_norm[:-1], red_norm[:-1]], axis=1)
