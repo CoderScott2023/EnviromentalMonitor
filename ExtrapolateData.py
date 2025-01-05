@@ -35,3 +35,8 @@ red_norm = red_counts / red_counts.max()
 
 y = green_norm[1:]
 X = np.stack([green_norm[:-1], yellow_norm[:-1], red_norm[:-1]], axis=1)
+
+split_index = int(len(X) * 0.9)
+X_train, X_test = X[:split_index], X[split_index:]
+y_train, y_test = y[:split_index], y[split_index:]
+
