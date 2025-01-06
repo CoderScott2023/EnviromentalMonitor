@@ -40,3 +40,11 @@ split_index = int(len(X) * 0.9)
 X_train, X_test = X[:split_index], X[split_index:]
 y_train, y_test = y[:split_index], y[split_index:]
 
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(32, activation='relu', input_shape=(X_train.shape[1],)),
+    tf.keras.layers.Dense(16, activation='relu'),
+    tf.keras.layers.Dense(1)
+])
+
+model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
