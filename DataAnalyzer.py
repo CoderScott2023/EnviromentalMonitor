@@ -6,9 +6,9 @@ from google.colab import drive
 
 drive.mount('/content/drive')
 
-dataDir = '/content/drive/My Drive/Cropped_Maps'
-outputDir = '/content/drive/My Drive/NDVI_Analysis'
-os.makedirs(outputDir, exist_ok=True)
+dataDir1 = '/content/drive/My Drive/Cropped_Maps'
+outputDir1 = '/content/drive/My Drive/NDVI_Analysis'
+os.makedirs(outputDir1, exist_ok=True)
 
 def classify_ndvi_from_image(image):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -23,12 +23,12 @@ def load_images(start, end):
     green_counts = []
     tick_labels = []
 
-    filenames = sorted([f for f in os.listdir(dataDir) if f.endswith('.png')])
+    filenames = sorted([f for f in os.listdir(dataDir1) if f.endswith('.png')])
     for i in range(start, end):
         if i >= len(filenames):
             break
 
-        filePath = os.path.join(dataDir, filenames[i])
+        filePath = os.path.join(dataDir1, filenames[i])
         image = cv2.imread(filePath)
 
         red_count, yellow_count, green_count = classify_ndvi_from_image(image)
@@ -52,10 +52,10 @@ def load_images(start, end):
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
 
-    output_plot = os.path.join(outputDir, f'NDVI_Trends_{start + 1}_to_{end}.png')
+    output_plot = os.path.join(outputDir1, f'NDVI_Trends_{start + 1}_to_{end}.png')
     plt.savefig(output_plot, dpi=300)
     plt.close()
 
-total_images = len([f for f in os.listdir(dataDir) if f.endswith('.png')])
+total_images = len([f for f in os.listdir(dataDir1) if f.endswith('.png')])
 for x in range(0, total_images, 12):
     load_images(x, x + 12)
