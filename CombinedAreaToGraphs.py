@@ -120,3 +120,24 @@ for filename in sorted(os.listdir(dataDir)):
         output_file = os.path.join(output_dir, f'{filename.replace(".tif", ".png")}')
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close()
+  
+plt.figure(figsize=(18, 8))
+    plt.plot(range(start + 1, end + 1), red_counts, label='Red (Low NDVI)', color='red', marker='o', linewidth=1)
+    plt.plot(range(start + 1, end + 1), yellow_counts, label='Yellow (Moderate NDVI)', color='gold', marker='o', linewidth=1)
+    plt.plot(range(start + 1, end + 1), green_counts, label='Green (High NDVI)', color='green', marker='o', linewidth=1)
+
+    plt.xticks(ticks=range(start + 1, end + 1), labels=tick_labels, rotation=45)
+    plt.xlabel('Image Index')
+    plt.ylabel('Pixel Count')
+    plt.title(f'NDVI Pixel Classification for Images {start + 1} to {end}')
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.tight_layout()
+
+    output_plot = os.path.join(outputDir1, f'NDVI_Trends_{start + 1}_to_{end}.png')
+    plt.savefig(output_plot, dpi=300)
+    plt.close()
+
+total_images = len([f for f in os.listdir(dataDir1) if f.endswith('.png')])
+for x in range(0, total_images, 12):
+    load_images(x, x + 12)
