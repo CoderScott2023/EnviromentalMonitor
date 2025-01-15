@@ -1,6 +1,7 @@
 import ee
 import os
 import rasterio
+import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from google.colab import drive
@@ -10,6 +11,11 @@ drive.mount('/content/drive')
 dataDir = '/content/drive/My Drive/EarthEngineExports'
 outputDir = '/content/drive/My Drive/ThematicMapsForUSEF'
 os.makedirs(output_dir, exist_ok=True)
+
+
+dataDir1 = '/content/drive/My Drive/Cropped_Maps'
+outputDir1 = '/content/drive/My Drive/NDVI_Analysis'
+os.makedirs(outputDir1, exist_ok=True)
 
 ee.Authenticate()
 ee.Initialize(project="project-id") #not going to put my actual project id here for obvious reasons, especially cuz i wanna make this public sometime. Just know that it goes here for stuff like colab
@@ -46,6 +52,35 @@ def classify_ndvi(ndviData):
     ndviClass[(ndviData > 0.2) & (ndviData <= 0.6)] = 2
     ndviClass[ndviData <= 0.2] = 1
     return ndviClass
+
+def classify_ndvi_from_image(image):
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    red_pixels = np.all(image_rgb == [165, 0, 38], axis=-1)
+    yellow_pixels = np.all(image_rgb == [255, 255, 191], axis=-1)
+    green_pixels = np.all(image_rgb == [0, 104, 55], axis=-1)
+    return np.sum(red_pixels), np.sum(yellow_pixels), np.sum(green_pixels)
+
+def load_images(start, end):
+    red_counts = []
+    yellow_counts = []
+    green_counts = []
+    tick_labels = []
+
+    filenames = sorted([f for f in os.listdir(dataDir1) if f.endswith('.png')])
+    for i in range(start, end):
+        if i >= len(filenames):
+            break
+
+        filePath = os.path.join(dataDir1, filenames[i])
+        image = cv2.imread(filePath)
+
+        red_count, yellow_count, green_count = classify_ndvi_from_image(image)
+        red_counts.append(red_count)
+        yellow_counts.append(yellow_count)
+        green_counts.append(green_count)
+
+        month = i + 1
+        tick_labels.append(f'Month {month}')
 
 for year in range(2000, 2021):
   if year == 2013 or year == 2014 or year == 2015:
