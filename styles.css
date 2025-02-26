@@ -44,6 +44,7 @@ body, html {
 
 /* Navbar */
 /* Navbar Fix */
+/* Navbar Fix */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -55,22 +56,25 @@ body, html {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap; /* Allows items to wrap if needed */
+    overflow: hidden; /* Prevents horizontal scrolling */
+    flex-wrap: wrap; /* Wrap items instead of overflowing */
 }
 
 .logo {
     color: #f0f4f8;
-    font-size: 1.5rem; /* Slightly smaller to fit better */
+    font-size: 1.5rem;
     font-weight: bold;
-    white-space: nowrap; /* Prevents logo from breaking */
+    white-space: nowrap;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Wraps items to prevent overflow */
-    gap: 15px; /* Reduced gap for better fitting */
+    flex-wrap: wrap; /* Ensures items wrap instead of causing horizontal scrolling */
+    gap: 10px; /* Adjusted for better spacing */
     padding: 0;
+    margin: 0;
+    max-width: 100%; /* Prevents content from exceeding screen width */
 }
 
 .nav-item {
@@ -80,32 +84,33 @@ body, html {
 .nav-item a {
     text-decoration: none;
     color: white;
-    padding: 0.5rem; /* Reduced padding to fit more items */
+    padding: 0.5rem;
     transition: 0.3s;
-    font-size: 1rem; /* Slightly smaller font for more space */
+    font-size: 1rem;
+    display: block;
 }
 
 /* Responsive Navbar for Smaller Screens */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .navbar {
         flex-direction: column;
         align-items: center;
+        text-align: center;
         padding: 1rem;
     }
 
     .nav-links {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        width: 100%;
     }
 
     .nav-item a {
         padding: 10px;
-        display: block;
         width: 100%;
-        text-align: center;
     }
 }
+
 
 .nav-item a:hover {
     background-color: #00796b;
