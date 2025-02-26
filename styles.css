@@ -43,6 +43,7 @@ body, html {
 }
 
 /* Navbar */
+/* Navbar Fix */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -54,18 +55,22 @@ body, html {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap; /* Allows items to wrap if needed */
 }
 
 .logo {
     color: #f0f4f8;
-    font-size: 1.8rem;
+    font-size: 1.5rem; /* Slightly smaller to fit better */
     font-weight: bold;
+    white-space: nowrap; /* Prevents logo from breaking */
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    flex-wrap: wrap; /* Wraps items to prevent overflow */
+    gap: 15px; /* Reduced gap for better fitting */
+    padding: 0;
 }
 
 .nav-item {
@@ -75,9 +80,31 @@ body, html {
 .nav-item a {
     text-decoration: none;
     color: white;
-    padding: 0.7rem;
+    padding: 0.5rem; /* Reduced padding to fit more items */
     transition: 0.3s;
-    font-size: 1.2rem;
+    font-size: 1rem; /* Slightly smaller font for more space */
+}
+
+/* Responsive Navbar for Smaller Screens */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-item a {
+        padding: 10px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .nav-item a:hover {
