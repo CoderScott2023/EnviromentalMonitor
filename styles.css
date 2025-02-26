@@ -12,7 +12,6 @@ body, html {
     text-align: center;
     scroll-behavior: smooth;
     overflow-x: hidden; /* Completely prevents horizontal scrolling */
-    width: 100vw;
 }
 
 /* Navbar */
@@ -24,12 +23,9 @@ body, html {
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
-    width: 100%;
-    max-width: 80%; /* Ensures no extra width */
+    width: 100%; /* Full width */
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap; /* Ensures content wraps instead of overflowing */
-    overflow: hidden;
 }
 
 /* Navbar Logo */
@@ -37,23 +33,22 @@ body, html {
     color: #f0f4f8;
     font-size: 1.5rem;
     font-weight: bold;
-    white-space: nowrap; /* Prevents logo from wrapping awkwardly */
+    white-space: nowrap;
 }
 
 /* Navbar Links */
 .nav-links {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Ensures items wrap instead of causing overflow */
-    justify-content: center; /* Centers items to avoid stretching */
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Keeps alignment balanced */
     padding: 0;
     margin: 0;
+    gap: 1rem;
 }
 
 .nav-item {
     position: relative;
-    padding: 0.5rem;
 }
 
 .nav-item a {
@@ -63,16 +58,14 @@ body, html {
     transition: 0.3s;
     font-size: 1rem;
     display: block;
-    white-space: nowrap; /* Prevents text from wrapping weirdly */
+    white-space: nowrap; /* Prevents wrapping */
 }
 
-/* Responsive Navbar for Smaller Screens */
+/* Responsive Navbar */
 @media (max-width: 900px) {
     .navbar {
         flex-direction: column;
-        align-items: center;
         text-align: center;
-        padding: 1rem;
     }
 
     .nav-links {
@@ -83,7 +76,6 @@ body, html {
 
     .nav-item {
         width: 100%;
-        text-align: center;
     }
 
     .nav-item a {
@@ -119,4 +111,3 @@ body, html {
 .nav-item:hover .dropdown-menu {
     display: block;
 }
-
