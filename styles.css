@@ -1,12 +1,19 @@
 /* General Styles */
-body, html {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
     font-family: 'Arial', sans-serif;
     background-color: #f0f4f8;
     color: #333;
     text-align: center;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 /* Banner */
@@ -96,6 +103,7 @@ body, html {
     list-style: none;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 180px; /* Ensures dropdown has enough space */
 }
 
 .dropdown-menu li {
@@ -155,4 +163,7 @@ body, html {
     text-align: center;
     padding: 20px 0;
     font-size: 1.2rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
