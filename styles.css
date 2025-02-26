@@ -2,7 +2,10 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    text-align: center;
     scroll-behavior: smooth;
 }
 
@@ -10,7 +13,7 @@ body, html {
 .banner {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 60vh;
     overflow: hidden;
 }
 
@@ -18,7 +21,7 @@ body, html {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(70%);
+    filter: brightness(60%);
 }
 
 .banner-text {
@@ -31,12 +34,12 @@ body, html {
 }
 
 .banner-text h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 0;
 }
 
 .banner-text p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 /* Navbar */
@@ -50,18 +53,19 @@ body, html {
     top: 0;
     width: 100%;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-    color: white;
-    font-size: 1.5rem;
+    color: #f0f4f8;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
 .nav-item {
@@ -71,12 +75,13 @@ body, html {
 .nav-item a {
     text-decoration: none;
     color: white;
-    padding: 0.5rem;
+    padding: 0.7rem;
     transition: 0.3s;
+    font-size: 1.2rem;
 }
 
 .nav-item a:hover {
-    background-color: #00695c;
+    background-color: #00796b;
     border-radius: 5px;
 }
 
@@ -94,13 +99,13 @@ body, html {
 }
 
 .dropdown-menu li {
-    padding: 5px 0;
+    padding: 8px 0;
 }
 
 .dropdown-menu li a {
     color: black;
     display: block;
-    padding: 8px;
+    font-size: 1.1rem;
 }
 
 .nav-item:hover .dropdown-menu {
@@ -109,31 +114,38 @@ body, html {
 
 /* Content Sections */
 .content {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 50px auto;
     padding: 20px;
 }
 
 .info {
-    margin-bottom: 60px;
-    text-align: center;
+    margin-bottom: 80px;
+    padding: 20px;
+    background-color: #e0f2f1;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .info h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    color: #004d40;
+    margin-bottom: 15px;
 }
 
 .info p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    color: #333;
+    line-height: 1.6;
     margin-bottom: 20px;
 }
 
 .info img {
     width: 100%;
     height: auto;
-    max-height: 400px;
+    max-height: 450px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer */
@@ -141,8 +153,6 @@ body, html {
     background-color: #004d40;
     color: white;
     text-align: center;
-    padding: 15px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    padding: 20px 0;
+    font-size: 1.2rem;
 }
