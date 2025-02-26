@@ -25,7 +25,7 @@ body, html {
     position: sticky;
     top: 0;
     width: 100%;
-    max-width: 100%; /* Fixed width issue */
+    max-width: 80%; /* Ensures no extra width */
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     flex-wrap: wrap; /* Ensures content wraps instead of overflowing */
@@ -49,7 +49,6 @@ body, html {
     width: 100%;
     padding: 0;
     margin: 0;
-    gap: 1rem; /* Ensures spacing */
 }
 
 .nav-item {
@@ -67,7 +66,7 @@ body, html {
     white-space: nowrap; /* Prevents text from wrapping weirdly */
 }
 
-/* Responsive Navbar */
+/* Responsive Navbar for Smaller Screens */
 @media (max-width: 900px) {
     .navbar {
         flex-direction: column;
@@ -116,11 +115,6 @@ body, html {
     display: block;
     font-size: 1.1rem;
 }
-
-.nav-item:hover .dropdown-menu {
-    display: block;
-}
-
 
 .nav-item:hover .dropdown-menu {
     display: block;
