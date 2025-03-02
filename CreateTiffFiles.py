@@ -1,7 +1,7 @@
 import ee
 
 ee.Authenticate()
-ee.Initialize(project="project-id") #not going to put my actual project id here for obvious reasons, especially cuz i wanna make this public sometime. Just know that it goes here for stuff like colab
+ee.Initialize(project="project-id") #PUT YOUR GOOGLE CLOUD PROJECT ID HERE
 
 
 landsat_5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_TOA')
@@ -9,14 +9,14 @@ landsat_7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_TOA')
 landsat_8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA')
 
 
-wasatchFrontAreaBounding = ee.Geometry.Polygon([
+geoCoordinates = ee.Geometry.Polygon([ #PLACE THE COORDINATES YOU WANT HERE
   [-113, 40], [-113, 42],
   [-111, 42], [-111, 40]
 ])
 
 images = landsat_8 \
     .filterDate('2000-01-01', '2020-01-01') \
-    .filterBounds(wasatchFrontAreaBounding)
+    .filterBounds(geoCoordinates)
 
 def getMedianImageOfMonth(year, month):
     startDate = f'{year}-{month:02d}-01'
@@ -38,11 +38,11 @@ for year in range(2000, 2021):
         ndviMap = createNDVImap(year, month)
         
         task = ee.batch.Export.image.toDrive(
-            image=ndviMap.clip(wasatchFrontAreaBounding),
+            image=ndviMap.clip(geoCoordinates),
             description=f'NDVI_Year_{year}_Month_{month:02d}',
             folder='EarthEngineExports',
             scale=30,
-            region=wasatchFrontAreaBounding.getInfo(),
+            region=geoCoordinates.getInfo(),
             maxPixels=1e9
         )
       
