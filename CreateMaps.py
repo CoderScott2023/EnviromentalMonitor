@@ -6,8 +6,8 @@ from google.colab import drive
 
 drive.mount('/content/drive')
 
-dataDir = '/content/drive/My Drive/EarthEngineExports'
-outputDir = '/content/drive/My Drive/ThematicMapsForUSEF'
+dataDir = '/content/drive/My Drive/FolderWithTIFFFiles' #Link your folder with tiff files here
+outputDir = '/content/drive/My Drive/Output' #link your output folder here
 os.makedirs(output_dir, exist_ok=True)
 
 def classify_ndvi(ndviData):
