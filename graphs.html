@@ -39,31 +39,31 @@
     <main class="content">
         <section class="info">
             <h2>Instructions On How To Use The Code</h2>
-            <p>Create a Google Account, visit Colab, and create a new notebook. Copy all of the code from this repo: <a href="https://github.com/CoderScott2023/EnviromentalMonitor/tree/CREATE-YOUR-OWN"/> or just copy this notebook: <a href="https://colab.research.google.com/drive/1YrZFUDD6eJzjrtjcrd-Pmbq-AJ6FMs0x?usp=sharing"/>.</p>
+            <p>Create a Google Account, visit Colab, and create a new notebook. Copy all of the code from this repo: <a href="https://github.com/CoderScott2023/EnviromentalMonitor/tree/CREATE-YOUR-OWN"></a> or just copy this notebook: <a href="https://colab.research.google.com/drive/1YrZFUDD6eJzjrtjcrd-Pmbq-AJ6FMs0x?usp=sharing"></a>.</p>
         </section>
         <section class="info">
             <h2>Install Packages In Colab</h2>
-            <p>The Wasatch Front is experiencing rapid environmental changes, from rising temperatures to worsening air quality. By collecting and analyzing real-world data, we aim to provide insights into these shifts and their impact on local ecosystems and human health.</p>
+            <p>Run the first piece of shell code to install Rasterio. Everything else should install automatically.</p>
             <img src="installimage.png" alt="install image">
         </section>
         <section class="info">
             <h2>Create Your TIFF Files</h2>
-            <p>The Wasatch Front is experiencing rapid environmental changes, from rising temperatures to worsening air quality. By collecting and analyzing real-world data, we aim to provide insights into these shifts and their impact on local ecosystems and human health.</p>
+            <p>Specify the bounding box in the geoCoordinates variable, each list is a coordinate, forming a box of four coordinates. Additionally, specify the folder you want your TIFF files to populate in your Google Drive. Finally, run the code and wait until the folder is full. Your TIFF Files should look like below:</p>
             <img src="tiffimage.png" alt="tiff image">
         </section>
         <section class="info">
             <h2>Create Your NDVI Maps</h2>
-            <p>The Wasatch Front is experiencing rapid environmental changes, from rising temperatures to worsening air quality. By collecting and analyzing real-world data, we aim to provide insights into these shifts and their impact on local ecosystems and human health.</p>
+            <p>Once all of your TIFF files are in your Google Drive, specify that folder as the input folder, and specify an output folder you want your maps to go in. Run the code and wait for the files to populate. The maps should look like this:</p>
             <img src="image1.png" alt="map image">
         </section>
         <section class="info">
             <h2>Crop Your Maps</h2>
-            <p>The Wasatch Front is experiencing rapid environmental changes, from rising temperatures to worsening air quality. By collecting and analyzing real-world data, we aim to provide insights into these shifts and their impact on local ecosystems and human health.</p>
+            <p>This step simply crops your maps for analysis, specify your input and output folders, and then run the code. It should look like this:</p>
             <img src="croppedmaps.png" alt="cropmap image">
         </section>
         <section class="info">
             <h2>Create Your Graphs</h2>
-            <p>The Wasatch Front is experiencing rapid environmental changes, from rising temperatures to worsening air quality. By collecting and analyzing real-world data, we aim to provide insights into these shifts and their impact on local ecosystems and human health.</p>
+            <p>Finally, choose which type of graph you want. If you would like a full graph displaying every value, choose the fifth file in the repo. If not, if you would like to see all the data points in January, for example, specify your month in the month variable, and run the fourth file. Make sure you specify input/output variables. You should have something similar to this:</p>
             <img src="image2.png" alt="graph image">
         </section>
     </main>
