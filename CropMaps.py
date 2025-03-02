@@ -5,8 +5,8 @@ from google.colab import drive
 
 drive.mount('/content/drive')
 
-dataDir = '/content/drive/My Drive/NDVI_Maps'
-outputDir = '/content/drive/My Drive/Cropped_Maps'
+dataDir = '/content/drive/My Drive/Folder With Maps' #Put your folder with your NDVI Maps here
+outputDir = '/content/drive/My Drive/Output' #output folder here
 
 os.makedirs(outputDir, exist_ok=True)
 
