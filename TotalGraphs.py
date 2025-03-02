@@ -7,8 +7,8 @@ from google.colab import drive
 
 drive.mount('/content/drive')
 
-dataDir = '/content/drive/My Drive/Cropped_Maps'
-outputDir = '/content/drive/My Drive/NDVI_Analysis2'
+dataDir = '/content/drive/My Drive/Your Cropped Maps Folder' #Your folder with your cropped maps
+outputDir = '/content/drive/My Drive/Output' #your output folder
 os.makedirs(outputDir, exist_ok=True)
 def classify_ndvi_from_image(image):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
